@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carregando Servidor...</title>
+    <!-- CSS na mesma pasta -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Overlay para escurecer o fundo -->
+    <div class="overlay"></div>
+
+    <div class="loading-container">
+        <!-- Caminho para a pasta img, dentro de ui -->
+        <img src="img/logo.png" alt="Logo do Servidor" class="server-logo">
+
+        <h1 class="server-title">Cops and Robbers Ultimate</h1>
+        <p class="server-subtitle">Loading...</p>
+
+        <div class="progress-bar-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <p id="loading-status" class="loading-status">Initializing connection ...</p>
+    </div>
+
+    <div class="footer">
+        <a href="https://discord.gg/SEUSERVIDOR" target="_blank">Discord</a>
+        <a href="#" target="_blank">Enjoy</a>
+        <a href="#" target="_blank">Rules</a>
+    </div>
+
+    <!-- 
+      IMPORTANTE: O caminho do áudio usa '../' para sair da pasta 'ui'
+      e entrar na pasta 'audio', conforme a sua estrutura.
+    -->
+    <audio id="background-music" src="../audio/musica.mp3" loop></audio>
+
+    <!-- JS na mesma pasta -->
+    <script src="script.js"></script>
+</body>
+</html>

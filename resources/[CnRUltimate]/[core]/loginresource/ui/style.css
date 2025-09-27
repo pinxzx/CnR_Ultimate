@@ -1,0 +1,108 @@
+/* --- CONFIGURAÇÕES GLOBAIS E DE FUNDO --- */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    background-color: transparent; /* GARANTE QUE A PÁGINA É TRANSPARENTE */
+    overflow: hidden;
+}
+
+/* --- WRAPPER PRINCIPAL (CONTROLA A VISIBILIDADE) --- */
+#wrapper {
+    display: none; /* Começa escondida */
+    height: 100%;
+    width: 100%;
+    background-color: rgba(26, 26, 26, 0.95); /* Fundo escuro semi-transparente para um efeito mais suave */
+    background-image: url('https://www.transparenttextures.com/patterns/dark-denim-3.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f0f0f0;
+}
+
+/* --- CAIXA DO FORMULÁRIO --- */
+.container {
+    text-align: center;
+}
+
+.character-creation-form {
+    width: 450px; /* Largura fixa para melhor apresentação */
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #4a90e2; /* Azul temático */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p {
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+/* --- ESTILO DO CAMPO DE TEXTO (INPUT) --- */
+#character-name {
+    box-sizing: border-box; /* Essencial para que o padding não afete a largura */
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 25px;
+    border: 1px solid #4a90e2; /* Borda azul */
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+    font-size: 1.1em;
+    border-radius: 4px;
+    transition: all 0.3s ease; /* Transição suave para o foco */
+}
+
+/* Efeito ao clicar no campo de texto */
+#character-name:focus {
+    outline: none; /* Remove a borda padrão do browser */
+    border-color: #ffffff; /* Borda fica branca */
+    box-shadow: 0 0 10px rgba(74, 144, 226, 0.5); /* Efeito de brilho azul */
+}
+
+/* Cor do texto do placeholder (ex: "Nome Sobrenome") */
+#character-name::placeholder {
+  color: #888;
+}
+
+/* --- ESTILO DO BOTÃO DE SUBMISSÃO --- */
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background-color: #4a90e2; /* Fundo azul */
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease; /* Transição suave ao passar o rato */
+}
+
+/* Efeito ao passar o rato por cima do botão */
+button:hover {
+    background-color: #357ABD; /* Azul um pouco mais escuro */
+}
+
+/* --- ESTILO DA MENSAGEM DE ERRO --- */
+.error-message {
+    color: #ff4747;
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid #ff4747;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: -10px; /* Puxa para cima para ficar mais perto do input */
+    margin-bottom: 15px;
+    display: none;
+}
