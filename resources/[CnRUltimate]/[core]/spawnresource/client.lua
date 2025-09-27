@@ -25,8 +25,7 @@ local function spawnPlayer()
 
     local spawnPosition
     if not PlayerData then TriggerServerEvent("spawnresource:requestPlayerData") end
-    while PlayerData == nil do Wait(0) print(PlayerData) end
-    print(PlayerData)
+    while PlayerData == nil do Wait(0) end
     
     local playerJob = PlayerData.job
 
@@ -37,15 +36,18 @@ local function spawnPlayer()
     elseif playerJob == "Medic" then
         spawnPosition = spawnPoints.medics[math.random(#spawnPoints.medics)]
     end
-    
+    DoScreenFadeOut(500)
     exports.spawnmanager:spawnPlayer({
         x = spawnPosition.x,
         y = spawnPosition.y,
         z = spawnPosition.z,
         heading = 0,
-        skipFade = false
+        skipFade = true
     })
     
+    exports.characterhandler:LoadPlayerCharacter()
+    Wait(3000)
+    DoScreenFadeIn(500)
 end
 exports("spawnPlayer", spawnPlayer)
 
@@ -58,3 +60,12 @@ RegisterNetEvent("spawnresource:sendPlayerData")
 AddEventHandler("spawnresource:sendPlayerData", function (pData)
     PlayerData = pData
 end)
+local model = RequestModel(`mp_m_freemode_01`)
+    -- while not HasModelLoaded(`mp_m_freemode_01`) do Wait(0) RequestModel(`mp_m_freemode_01`) end
+    -- SetPlayerModel(PlayerId(), `mp_m_freemode_01`)
+    -- SetModelAsNoLongerNeeded(`mp_m_freemode_01`)
+
+    -- RequestCollisionAtCoord(spawnPosition.x, spawnPosition.y, spawnPosition.z)
+
+    -- local ped = PlayerPedId()
+    -- SetEntityCoordsNoOffset(ped, spawnPosition.x, spawnPosition.y, spawnPosition.z, false, false, false, true)

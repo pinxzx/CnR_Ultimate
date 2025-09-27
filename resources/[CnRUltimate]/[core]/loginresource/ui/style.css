@@ -13,9 +13,8 @@ body, html {
     display: none; /* Começa escondida */
     height: 100%;
     width: 100%;
-    background-color: rgba(26, 26, 26, 0.95); /* Fundo escuro semi-transparente para um efeito mais suave */
+    background-color: rgb(26, 26, 26); /* Fundo escuro semi-transparente para um efeito mais suave */
     background-image: url('https://www.transparenttextures.com/patterns/dark-denim-3.png');
-    display: flex;
     justify-content: center;
     align-items: center;
     color: #f0f0f0;

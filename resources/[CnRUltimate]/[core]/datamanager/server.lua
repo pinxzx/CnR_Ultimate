@@ -47,7 +47,7 @@ end
 local function GetPlayerData(src)
     local playerId = GetPlayerId(src)
     local pData = PlayersCache[playerId]
-    print(pData)
+    
     return pData
 end
 exports("GetPlayerData", GetPlayerData)

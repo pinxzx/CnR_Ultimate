@@ -29,17 +29,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const nameParts = fullName.split(' ').filter(part => part.length > 0);
 
         if (nameParts.length !== 2) {
-            showError("Por favor, insira um nome e um sobrenome (ex: John Doe).");
+            showError("Please enter a first and last name (e.g., John Doe).");
             return;
         }
         const firstName = nameParts[0];
         const lastName = nameParts[1];
         if (!validNameRegex.test(firstName) || !validNameRegex.test(lastName)) {
-            showError("O nome e o sobrenome devem conter apenas letras.");
+            showError("First and last name must contain only letters.");
             return;
         }
         if (firstName.length < 3 || lastName.length < 3) {
-            showError("O nome e o sobrenome devem ter, cada um, pelo menos 3 letras.");
+            showError("The first and last name must each have at least 3 letters.");
             return;
         }
         // ... (Fim da lógica de validação) ...

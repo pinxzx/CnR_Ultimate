@@ -28,5 +28,13 @@ RegisterNUICallback('character_creation', function(data, cb)
         type = 'ui',
         status = false
     })
-    exports.charactercreation:StartCharacterCreation()
+    exports.characterhandler:StartCharacterCreator()
 end)
+
+RegisterCommand('custom', function()
+    exports.characterhandler:StartCharacterCreator()
+end, false)
+
+RegisterCommand('loadchar', function()
+    exports.characterhandler:LoadPlayerCharacter()
+end, false)
