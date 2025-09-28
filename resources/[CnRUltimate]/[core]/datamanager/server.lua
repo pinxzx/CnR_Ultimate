@@ -68,11 +68,36 @@ local function GetPlayerName(pId)
 end
 exports("GetPlayerName", GetPlayerName)
 
+local function GetPlayerJob(pId)
+    if not PlayersCache[pId] then return nil end
+    return PlayersCache[pId].job
+end
+
+
 -- SaveData
 Citizen.CreateThread(function ()
     while true do 
         Wait(5000)
         SaveAllPlayersData()
+    end
+end)
+
+Citizen.CreateThread(function()
+
+    while true do 
+        Citizen.Wait(100)
+        for pId, pData in pairs(PlayersCache) do
+            local targetSrc = nil
+            for _, src in pairs(GetPlayers()) do
+                
+                local identifier = GetPlayerIdentifiers(src)[1]
+                if identifier == pData.identifier then
+                    targetSrc = src
+                    break
+                end
+            end
+            if targetSrc then TriggerClientEvent("datamanager:updateClientPlayerData", targetSrc, pData) end
+        end
     end
 end)
 
@@ -129,3 +154,6 @@ AddEventHandler("playerDropped", function(reason, resourceName, clientDropReason
         PlayersCache[pData.id] = nil
     end
 end)
+
+RegisterNetEvent("datamanager:getPlayerJob")
+AddEventHandler("datamanager:getPlayerJob", GetPlayerJob)

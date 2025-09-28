@@ -43,11 +43,12 @@ local function spawnPlayer()
         z = spawnPosition.z,
         heading = 0,
         skipFade = true
-    })
-    
-    exports.characterhandler:LoadPlayerCharacter()
-    Wait(3000)
-    DoScreenFadeIn(500)
+    }, function ()
+        exports.characterhandler:LoadPlayerCharacter()
+        Wait(3000)
+        DoScreenFadeIn(500)
+    end)
+    TriggerEvent("spawnresource:playerSpawnedClient")
 end
 exports("spawnPlayer", spawnPlayer)
 
