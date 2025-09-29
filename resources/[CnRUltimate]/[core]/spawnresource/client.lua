@@ -25,31 +25,35 @@ local function spawnPlayer()
 
     Citizen.CreateThread(function ()
         local spawnPosition
-    if not PlayerData then TriggerServerEvent("spawnresource:requestPlayerData") end
-    while PlayerData == nil do Wait(0) end
-    
-    local playerJob = PlayerData.job
+        local cb
+        if not PlayerData then TriggerServerEvent("spawnresource:requestPlayerData") end
+        while PlayerData == nil do Wait(0) end
 
-    if playerJob == "Civilian" then
-        spawnPosition = spawnPoints.civilians[math.random(#spawnPoints.civilians)]
-    elseif playerJob == "Cop" then
-        spawnPosition = spawnPoints.cops[math.random(#spawnPoints.cops)]
-    elseif playerJob == "Medic" then
-        spawnPosition = spawnPoints.medics[math.random(#spawnPoints.medics)]
-    end
-    DoScreenFadeOut(500)
-    exports.spawnmanager:spawnPlayer({
-        x = spawnPosition.x,
-        y = spawnPosition.y,
-        z = spawnPosition.z,
-        heading = 0,
-        skipFade = true
-    }, function ()
-        exports.characterhandler:LoadPlayerCharacter()
-        Wait(3000)
-        DoScreenFadeIn(500)
-    end)
-    TriggerEvent("spawnresource:playerSpawnedClient")
+        local playerJob = PlayerData.job
+
+
+        if playerJob == "Civilian" then
+            spawnPosition = spawnPoints.civilians[math.random(#spawnPoints.civilians)]
+            cb =  function ()
+                exports.characterhandler:LoadPlayerCharacter()
+            end
+        elseif playerJob == "Cop" then
+            spawnPosition = spawnPoints.cops[math.random(#spawnPoints.cops)]
+            cb =  function ()
+                exports.characterhandler:LoadPlayerCopCharacter()
+            end
+        elseif playerJob == "Medic" then
+            spawnPosition = spawnPoints.medics[math.random(#spawnPoints.medics)]
+        end
+        DoScreenFadeOut(10)
+        exports.spawnmanager:spawnPlayer({
+            x = spawnPosition.x,
+            y = spawnPosition.y,
+            z = spawnPosition.z,
+            heading = 0,
+            skipFade = true
+        }, cb)
+        TriggerEvent("spawnresource:playerSpawnedClient")
     end)
 end
 exports("spawnPlayer", spawnPlayer)

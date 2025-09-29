@@ -88,8 +88,6 @@ local config = {
         tattoos = false
 }
 
-local player_appearance = {}
-
 function LoadAnim(dict)
   while not HasAnimDictLoaded(dict) do
     RequestAnimDict(dict)
@@ -134,12 +132,18 @@ local function LoadPlayerCharacter()
 end
 exports("LoadPlayerCharacter", LoadPlayerCharacter)
 
-RegisterNetEvent("characterhandler:sendCharacterLoad")
-AddEventHandler("characterhandler:sendCharacterLoad", function(appearance)
-
-    exports["fivem-appearance"]:setPlayerAppearance(json.decode(appearance[1].appearance))
-
+RegisterNetEvent("characterhandler:sendCharacterLoad", function(normal_appearance, after_appearance)
+    after_appearance = after_appearance or nil
+    exports["fivem-appearance"]:setPlayerAppearance(json.decode(normal_appearance.appearance)) -- coco
+    if after_appearance then 
+        exports["fivem-appearance"]:setPlayerAppearance(json.decode(after_appearance.appearance))
+    end
+    Citizen.Wait(3000)
+    DoScreenFadeIn(1000)
 end)
 
+local function LoadPlayerCopCharacter()
+    TriggerServerEvent("characterhandler:server:requestLoadCopCharacter")
+end
 
-
+exports("LoadPlayerCopCharacter", LoadPlayerCopCharacter)

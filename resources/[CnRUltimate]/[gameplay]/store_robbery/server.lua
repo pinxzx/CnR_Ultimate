@@ -33,6 +33,11 @@ RegisterNetEvent("store_robbery:server:attemptRobbery", function (storeIndex)
         local dist = #(GetEntityCoords(playerPed) - storePosition)
         while dist <= 10 do
             Citizen.Wait(1000)
+            if IsPedDeadOrDying(playerPed, false) then 
+                TriggerClientEvent("notify:show", src, "Robbery Failed: You Died", "error")
+                startCooldown(storeIndex)
+                return
+            end
             if playerPed == nil then startCooldown(storeIndex) return end
             dist = #(GetEntityCoords(playerPed) - storePosition)
             if dist > 10 then TriggerClientEvent("notify:show", src,"Robbery Canceled: Left the robbery zone.", "error") startCooldown(storeIndex) return end
