@@ -2,8 +2,9 @@ TriggerServerEvent("loginresource:getFirstLoginData")
 
 RegisterNetEvent("loginresource:sendFirstLoginData")
 AddEventHandler("loginresource:sendFirstLoginData", function (isFirstLogin)
-    if isFirstLogin == 1 then
-        Wait(2000) 
+    Citizen.CreateThread(function ()
+        if isFirstLogin == 1 then
+        Citizen.Wait(2000) 
         SetNuiFocus(true, true)
         SendNUIMessage({
             type = 'ui',
@@ -17,6 +18,7 @@ AddEventHandler("loginresource:sendFirstLoginData", function (isFirstLogin)
             status = false
         })
     end
+    end)
 end)
 
 

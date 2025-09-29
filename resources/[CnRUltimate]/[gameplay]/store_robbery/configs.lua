@@ -1,5 +1,9 @@
 Config = {}
 
+Config.RobberyCooldown = 300 -- 5 minutes
+
+Config.RobberyTime = 10 -- 1 minute
+
 Config.Stores = {
     {
         ped = nil,

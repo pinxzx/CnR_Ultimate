@@ -1,0 +1,62 @@
+/* style.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+#notification-container {
+    position: absolute;
+    top: 20vh;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.notification {
+    background: rgba(17, 17, 17, 0.85);
+    color: #f1f1f1;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    min-width: 250px;
+    max-width: 350px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+    /* Animação */
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slideIn 0.5s forwards;
+    transition: opacity 0.5s ease;
+    display: flex; 
+    align-items: center; 
+}
+
+.notification i {
+    margin-right: 10px;
+}
+
+.notification.success {
+    border-left: 5px solid #4CAF50; 
+}
+.notification.success i {
+    color: #4CAF50;
+}
+
+.notification.error {
+    border-left: 5px solid #f44336;
+}
+.notification.error i {
+    color: #f44336;
+}
+
+.notification.info {
+    border-left: 5px solid #2196F3;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

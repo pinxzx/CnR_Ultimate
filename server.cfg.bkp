@@ -36,6 +36,8 @@ ensure chat
 ensure sessionmanager
 ensure hardcap
 
+## [txAdmin CFG validator]: onesync MUST only be set in the txAdmin settings page.
+# onesync on
 
 ## Add system admins
 add_ace group.admin command allow # allow all commands

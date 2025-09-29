@@ -1,6 +1,6 @@
 local PlayerData = nil
 
-exports.spawnmanager:setAutoSpawn(true)
+exports.spawnmanager:setAutoSpawn(false)
 TriggerServerEvent("spawnresource:requestPlayerData")
 
 local spawnPoints = {
@@ -23,7 +23,8 @@ local spawnPoints = {
 
 local function spawnPlayer()
 
-    local spawnPosition
+    Citizen.CreateThread(function ()
+        local spawnPosition
     if not PlayerData then TriggerServerEvent("spawnresource:requestPlayerData") end
     while PlayerData == nil do Wait(0) end
     
@@ -49,6 +50,7 @@ local function spawnPlayer()
         DoScreenFadeIn(500)
     end)
     TriggerEvent("spawnresource:playerSpawnedClient")
+    end)
 end
 exports("spawnPlayer", spawnPlayer)
 
@@ -61,12 +63,3 @@ RegisterNetEvent("spawnresource:sendPlayerData")
 AddEventHandler("spawnresource:sendPlayerData", function (pData)
     PlayerData = pData
 end)
-local model = RequestModel(`mp_m_freemode_01`)
-    -- while not HasModelLoaded(`mp_m_freemode_01`) do Wait(0) RequestModel(`mp_m_freemode_01`) end
-    -- SetPlayerModel(PlayerId(), `mp_m_freemode_01`)
-    -- SetModelAsNoLongerNeeded(`mp_m_freemode_01`)
-
-    -- RequestCollisionAtCoord(spawnPosition.x, spawnPosition.y, spawnPosition.z)
-
-    -- local ped = PlayerPedId()
-    -- SetEntityCoordsNoOffset(ped, spawnPosition.x, spawnPosition.y, spawnPosition.z, false, false, false, true)
